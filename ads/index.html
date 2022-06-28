@@ -1,70 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
 
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
-</html>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="ad-container"></div>
 
+    <script>
+      let wrapper = document.querySelector(".ad-container");
+      let adSizes = [
+        [300, 250],
+        [320, 50],
+        [300, 600],
+        [160, 600],
+        [728, 90],
+        [970, 250],
+      ];
 
-<div class="ad-container"> </div>  
-        
-<script>
-let wrapper = document.querySelector('.ad-container');
-let adSizes = [
-  [300,250],
-  [320,50],
-  [300,600],
-  [160,600],
-  [728,90],
-  [970,250]
-]
+      adSizes.forEach((ad, index) => {
+        createDiv(ad, index);
+        addAd(ad, index);
+      });
 
-adSizes.forEach((ad,index) => {
-  createDiv(ad,index)
-  addAd(ad,index)
-})
-
-function createDiv(ad,index){
-  let adDiv = document.createElement('div')
-  adDiv.classList.add("danAd-" + index)
-  adDiv.style.width = ad[0] + "px";
-  adDiv.style.height = ad[1] + "px";
-  adDiv.style.backgroundColor = "blue"
-  wrapper.appendChild(adDiv)
-}
-
-function addAd(ad,index){
-  lottie.loadAnimation({
-    container: document.querySelector('.' + 'danAd-' + index ),
-    autoplay: true,
-    loop: false,
-    renderer: 'svg',
-    path: `${ad[0]}x${ad[1]}.json`,
-    rendererSettings: {
-      filterSize: {
-          width: '300%',
-          height: '300%',
-          x: '-100%',
-          y: '-100%',
+      function createDiv(ad, index) {
+        let adDiv = document.createElement("div");
+        adDiv.classList.add("ad");
+        adDiv.classList.add("danAd-" + index);
+        adDiv.style.width = ad[0] + "px";
+        adDiv.style.height = ad[1] + "px";
+        adDiv.style.backgroundColor = "blue";
+        wrapper.appendChild(adDiv);
       }
-    }
-  })
-  .setSubframe(false)
-}
 
-
-  
-</script>
-
-</body>
-
+      function addAd(ad, index) {
+        lottie
+          .loadAnimation({
+            container: document.querySelector("." + "danAd-" + index),
+            autoplay: true,
+            loop: false,
+            renderer: "svg",
+            path: `${ad[0]}x${ad[1]}.json`,
+            rendererSettings: {
+              filterSize: {
+                width: "300%",
+                height: "300%",
+                x: "-100%",
+                y: "-100%",
+              },
+            },
+          })
+          .setSubframe(false);
+      }
+    </script>
+  </body>
 </html>
-
